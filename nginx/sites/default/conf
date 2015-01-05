@@ -1,0 +1,10 @@
+server {
+  server_name {{ grains['fqdn'] }};
+  listen 80;
+  location / {
+    include proxy.conf;
+    proxy_pass http://localhost:8080;
+  }
+}
+
+# vim: set ft=nginx :
