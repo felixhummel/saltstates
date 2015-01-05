@@ -1,4 +1,4 @@
 base:
   '*':
-    - virtualbox
-
+    - basics
+    - ssh

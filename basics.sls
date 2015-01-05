@@ -1,0 +1,22 @@
+tools:
+  pkg.installed:
+    - pkgs:
+      - atool
+      - bash-completion
+      - curl
+      - dnsutils
+      - gpm
+      - htop
+      - inotify-tools
+      - iotop
+      - jnettop
+      - lftp
+      - lsof
+      - python-optcomplete
+      - python-pip
+      - rsync
+      - tmux
+      - tree
+      - vim-nox
+      - wajig
+      - whois
