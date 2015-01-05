@@ -15,11 +15,17 @@ ssh:
 fail2ban:
   pkg.latest
 
+/root/.ssh:
+  file.directory:
+    - user: root
+    - group: root
+    - mode: 700
+
 felix@think:
   ssh_auth.present:
-    - user: felix
+    - user: root
     - source: salt://ssh/think.pub
     - require:
-      - file: /home/felix/.ssh
+      - file: /root/.ssh
       - pkg: openssh-server
 
