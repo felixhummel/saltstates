@@ -7,6 +7,7 @@ felix:
     - fullname: Felix Hummel
     - home: /home/felix
     - uid: 1337
+    - shell: /bin/bash
     - groups:
       - felix
       - adm
