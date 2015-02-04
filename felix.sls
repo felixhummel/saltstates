@@ -24,3 +24,20 @@ felix:
 /home/felix/{{ dir }}:
   file.absent
 {% endfor %}
+
+https://github.com/felixhummel/configs.git:
+  git.latest:
+    - rev: master
+    - target: /home/felix/configs
+    - user: felix
+    - submodules: True
+    - require:
+      - user: felix
+
+./init --force:
+  cmd.run:
+    - cwd: /home/felix/configs
+    - user: felix
+    - group: felix
+    - watch:
+      - git: https://github.com/felixhummel/configs.git
