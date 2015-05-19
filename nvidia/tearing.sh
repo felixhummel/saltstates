@@ -1,0 +1,2 @@
+export __GL_YIELD="USLEEP"
+export __GL_THREADED_OPTIMIZATIONS=1
