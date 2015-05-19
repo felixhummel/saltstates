@@ -1,5 +1,5 @@
 base:
   '*':
-    - basics
+    - essentials
     - ssh
     - felix
