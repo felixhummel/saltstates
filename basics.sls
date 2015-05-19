@@ -12,6 +12,7 @@ tools:
       - jnettop
       - lftp
       - lsof
+      - nmap
       - python-optcomplete
       - python-pip
       - rsync
