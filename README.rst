@@ -9,6 +9,10 @@ Kubuntu 14.10 fresh::
     add-apt-repository ppa:saltstack/salt
     apt-get update
     apt-get install git salt-minion
+    cat <<EOF > /etc/salt/minion
+    file_client: local
+    state_verbose: False
+    EOF
 
 Clone::
 
@@ -16,5 +20,5 @@ Clone::
 
 Run locally::
 
-    salt-call --local state.highstate
+    salt-call state.highstate
 
