@@ -1,8 +1,15 @@
+libssl1.0.0:  # heartbleed
+  pkg.latest
+
+
 nginx:
-  pkg:
-    - installed
-  service:
-    - running
+  pkgrepo.managed:
+    - name: deb http://nginx.org/packages/ubuntu/ {{ grains['lsb_distrib_codename'] }} nginx
+    - dist: {{ grains['lsb_distrib_codename'] }}
+    - file: /etc/apt/sources.list.d/nginx.list
+    - key_url: salt://nginx/nginx_signing.key
+  pkg.latest: []
+  service.running:
     - onlyif:
       - nginx -t  # better than configtest, because it shows errors
 
