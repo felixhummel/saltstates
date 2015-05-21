@@ -2,6 +2,16 @@
 chromium-browser:
   pkg.installed
 
+# newer than chromium. best dev tools
+libappindicator1:
+  pkg.installed
+google-chrome-stable:
+  pkg.installed:
+    - sources:
+      - google-chrome-stable: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - require:
+      - pkg: libappindicator1
+
 kubuntu_ppa:
   pkgrepo.managed:
     - humanname: Kubuntu Backports PPA
