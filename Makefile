@@ -1,5 +1,5 @@
 # shorthand. "make" here. done.
-run:
-	salt-call --local state.highstate
+.PHONY: highstate
+highstate:
+	sudo -i salt-call state.highstate
 
-.PHONY: run
