@@ -21,3 +21,8 @@ kubuntu_ppa:
     - keyid: 8AC93F7A
     - keyserver: keyserver.ubuntu.com
 
+krusader:
+  pkg.installed
+krename:
+  pkg.installed
+
