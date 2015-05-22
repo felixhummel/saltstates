@@ -1,3 +1,5 @@
+include:
+  - .ipython
 # still has the best dev tools as of yet
 chromium-browser:
   pkg.installed
@@ -22,7 +24,9 @@ kubuntu_ppa:
     - keyserver: keyserver.ubuntu.com
 
 krusader:
-  pkg.installed
-krename:
-  pkg.installed
+  pkg.installed:
+    - pkgs:
+      - krusader
+      - krename
+      - kdiff3
 
