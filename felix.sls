@@ -26,6 +26,6 @@ felix:
   file.absent
 {% endfor %}
 
-{%- from 'configs.sls' import configs with context -%}
+{%- from 'macros.sls' import configs with context -%}
 {{ configs('felix') }}
 
