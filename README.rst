@@ -3,18 +3,20 @@ Felix' Salt States
 If you use the ssh state, then my public key will be registered for root on
 your server.
 
-Kubuntu 14.10 fresh
+Ubuntu 14.04
 
 .. code:: bash
 
     sudo -i
-    add-apt-repository ppa:saltstack/salt
+    add-apt-repository --yes ppa:saltstack/salt
     apt-get update
     apt-get --yes install git salt-minion
     cat <<EOF > /etc/salt/minion
     file_client: local
     state_verbose: False
     EOF
+    # stop salt-minion for local
+    service salt-minion stop
 
 Jiffybox
 
