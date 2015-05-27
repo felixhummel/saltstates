@@ -1,8 +1,9 @@
 base:
   '*':
     - essentials
-    - ssh
     - felix
+    - root
+    - ssh
     - workarounds
   'locutus':
     - desktop
