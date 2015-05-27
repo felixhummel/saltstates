@@ -1,11 +1,12 @@
 {% macro configs(user, require=True) %}
+
 {% if user == 'root' %}
   {% set target = '/root/configs' %}
 {% else %}
   {% set target = '/home/{0}/configs'.format(user) %}
 {% endif %}
 
-configs_repo:
+{{ user }}_configs:
   git.latest:
     - name: https://github.com/felixhummel/configs.git
     - rev: master
@@ -17,12 +18,12 @@ configs_repo:
       - user: {{ user }}
     {% endif %}
 
-init_configs:
+{{ user }}_configs_init:
   cmd.run:
     - name: ./init --force --skip-git
     - cwd: {{ target }}
     - user: {{ user }}
     - group: {{ user }}
     - onchanges:
-      - git: configs_repo
+      - git: {{ user }}_configs
 {% endmacro %}
