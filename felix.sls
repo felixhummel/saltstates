@@ -26,25 +26,6 @@ felix:
   file.absent
 {% endfor %}
 
-# this basically f***s up the remote, just to fix it afterwards
-# and get a good return code from "git config"
-# This should be fixed in the git state, but I'm too lazy today to file
-# a proper issue. :/
-# See also https://github.com/saltstack/salt/issues/12750
-# For future reference:
-# # git --version 
-# git version 2.1.0
-# # salt-call --version
-# salt-call 2014.7.1 (Helium)
-git config branch.master.remote foo:
-  cmd.run:
-    - cwd: /home/felix/configs
-    - user: felix
-    - group: felix
-    - require_in:
-      - https://github.com/felixhummel/configs.git
-
-
 https://github.com/felixhummel/configs.git:
   git.latest:
     - rev: master
