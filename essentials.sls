@@ -27,6 +27,10 @@ pip_list_fix:
     - name: python-pip
   cmd.script:
     - source: https://bootstrap.pypa.io/get-pip.py
+    - unless:
+      - pip list >/dev/null
   file.symlink:
     - name: /usr/bin/pip
     - target: /usr/local/bin/pip
+    - onchanges:
+      - cmd: pip_list_fix
