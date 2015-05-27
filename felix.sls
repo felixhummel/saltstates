@@ -54,7 +54,7 @@ https://github.com/felixhummel/configs.git:
     - require:
       - user: felix
 
-./init --force:
+./init --force --skip-git:
   cmd.run:
     - cwd: /home/felix/configs
     - user: felix
