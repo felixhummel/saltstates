@@ -1,0 +1,5 @@
+postgres:
+  # system users that may login
+  users:
+    - felix
+

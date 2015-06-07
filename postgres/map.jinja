@@ -1,0 +1,6 @@
+{% set version = salt.pillar.get('postgres:version', '9.4') %}
+{% set pkg = 'postgresql-{}'.format(version) %}
+{% set encoding = salt.pillar.get('postgres:encoding', 'UTF-8') %}
+{% set locale = salt.pillar.get('postgres:locale', 'en_US.UTF-8') %}
+{% set users = salt['pillar.get']('postgres:users', []) %}
+
