@@ -14,6 +14,7 @@ tools:
       - lsof
       - nmap
       - python-optcomplete
+      - python-virtualenv
       - rsync
       - tmux
       - tree
