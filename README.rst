@@ -3,6 +3,8 @@ Felix' Salt States
 If you use the ssh state, then my public key will be registered for root on
 your server.
 
+The following is for a masterless setup.
+
 Ubuntu 14.04
 
 .. code:: bash
@@ -14,9 +16,20 @@ Ubuntu 14.04
     cat <<EOF > /etc/salt/minion
     file_client: local
     state_verbose: False
+    file_roots:
+      base:
+        - /srv/salt/base
+        - /srv/salt/felix
     EOF
     # stop salt-minion for local
     service salt-minion stop
+
+Base env
+
+.. code:: bash
+
+    mkdir -p /srv/salt
+    test ! -d /srv/salt/base && git init /srv/salt/base
 
 Jiffybox
 
@@ -48,7 +61,13 @@ Clone
 
 .. code:: bash
 
-    git clone https://github.com/felixhummel/saltstates /srv/salt
+    git clone https://github.com/felixhummel/saltstates /srv/salt/felix
+
+Base top file
+
+.. code:: bash
+
+    cp /srv/salt/felix/base_top_example.sls /srv/salt/base/top.sls
 
 Run locally
 
