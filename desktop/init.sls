@@ -3,6 +3,7 @@ include:
   - .dropbox
   - .ipython
   - .krusader
+  - .yakuake
 
 kubuntu_backports:
   pkgrepo.managed:
