@@ -1,0 +1,7 @@
+iptables:
+  # exposed ports
+  open_ports:
+    - 22
+    - 80
+    - 443
+  allow_icmp: True

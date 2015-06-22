@@ -1,0 +1,4 @@
+{# allow 22 by default, so we don't lock ourselves out #}
+{% set open_ports = salt.pillar.get('iptables:open_ports', [22]) %}
+{% set allow_icmp = salt.pillar.get('iptables:allow_icmp', True) %}
+
