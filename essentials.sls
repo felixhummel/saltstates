@@ -13,6 +13,8 @@ tools:
       - lftp
       - lsof
       - nmap
+      # TODO: use ntpdate for laptops
+      - ntp
       - python-optcomplete
       - python-virtualenv
       - rsync
