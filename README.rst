@@ -10,9 +10,14 @@ Ubuntu 14.04
 .. code:: bash
 
     sudo -i
-    add-apt-repository --yes ppa:saltstack/salt
+    wget -O - https://repo.saltstack.com/apt/ubuntu/12.04/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
+    cat << EOF > /etc/apt/sources.list.d/saltstack-salt-precise.list
+    deb http://repo.saltstack.com/apt/ubuntu/12.04/amd64/latest precise main
+    deb-src http://repo.saltstack.com/apt/ubuntu/12.04/amd64/latest precise main
+    EOF
     apt-get update
     apt-get --yes install git salt-minion
+
     cat <<EOF > /etc/salt/minion
     file_client: local
     state_verbose: False
