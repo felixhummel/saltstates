@@ -31,6 +31,24 @@ Base env
     mkdir -p /srv/salt
     test ! -d /srv/salt/base && git init /srv/salt/base
 
+Clone
+
+.. code:: bash
+
+    git clone https://github.com/felixhummel/saltstates /srv/salt/felix
+
+Base top file
+
+.. code:: bash
+
+    cp /srv/salt/felix/base_top_example.sls /srv/salt/base/top.sls
+
+Run locally
+
+.. code:: bash
+
+    salt-call state.highstate
+
 Jiffybox
 
 .. code:: bash
@@ -56,23 +74,4 @@ Jiffybox
     exec $SHELL
     hostname
     hostname -f
-
-Clone
-
-.. code:: bash
-
-    git clone https://github.com/felixhummel/saltstates /srv/salt/felix
-
-Base top file
-
-.. code:: bash
-
-    cp /srv/salt/felix/base_top_example.sls /srv/salt/base/top.sls
-
-Run locally
-
-.. code:: bash
-
-    salt-call state.highstate
-
 
