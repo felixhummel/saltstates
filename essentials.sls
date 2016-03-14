@@ -15,6 +15,7 @@ tools:
       - nmap
       # TODO: use ntpdate for laptops
       - ntp
+      - pwgen
       - python-optcomplete
       - python-virtualenv
       - rsync
