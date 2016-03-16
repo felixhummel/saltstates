@@ -53,3 +53,12 @@ felix:
     - mode: 600
     - require:
       - cmd: felix_configs_init
+
+# user0 is my convention for first user with auto-generated uid
+remove_default_user:
+  user.absent:
+    - name: user0
+    - require:
+      - user: felix
+  file.absent:
+    - name: /home/user0
