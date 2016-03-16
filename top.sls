@@ -8,3 +8,5 @@ base:
     - desktop
   'think':
     - desktop
+  'x':
+    - grub
