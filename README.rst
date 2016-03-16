@@ -10,11 +10,7 @@ Ubuntu 14.04
 .. code:: bash
 
     sudo -i
-    wget -O - https://repo.saltstack.com/apt/ubuntu/12.04/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
-    cat << EOF > /etc/apt/sources.list.d/saltstack-salt-precise.list
-    deb http://repo.saltstack.com/apt/ubuntu/12.04/amd64/latest precise main
-    deb-src http://repo.saltstack.com/apt/ubuntu/12.04/amd64/latest precise main
-    EOF
+    add-apt-repository ppa:saltstack/salt
     apt-get update
     apt-get --yes install git salt-minion
 
@@ -23,8 +19,8 @@ Ubuntu 14.04
     state_verbose: False
     file_roots:
       base:
-        - /srv/salt/base
-        - /srv/salt/felix
+        - /srv/salt
+        - /srv/felix.salt
     EOF
     # stop salt-minion for local
     service salt-minion stop
@@ -34,19 +30,18 @@ Base env
 .. code:: bash
 
     mkdir -p /srv/salt
-    test ! -d /srv/salt/base && git init /srv/salt/base
 
 Clone
 
 .. code:: bash
 
-    git clone https://github.com/felixhummel/saltstates /srv/salt/felix
+    git clone https://github.com/felixhummel/saltstates /srv/felix.salt
 
 Base top file
 
 .. code:: bash
 
-    cp /srv/salt/felix/base_top_example.sls /srv/salt/base/top.sls
+    cp /srv/felix.salt/base_top_example.sls /srv/salt/base/top.sls
 
 Run locally
 
