@@ -4,7 +4,6 @@ base:
     - felix
     - root
     - ssh
-    - workarounds
   'locutus':
     - desktop
   'think':

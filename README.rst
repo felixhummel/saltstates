@@ -31,9 +31,6 @@ Ubuntu 14.04
     # Clone
     git clone https://github.com/felixhummel/saltstates /srv/felix.salt
 
-    # Base top file
-    cp /srv/felix.salt/base_top_example.sls /srv/salt/top.sls
-
     # Run locally
     salt-call state.highstate
 
