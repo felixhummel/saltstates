@@ -10,7 +10,7 @@ Ubuntu 14.04
 .. code:: bash
 
     sudo -i
-    add-apt-repository ppa:saltstack/salt
+    add-apt-repository -- yes ppa:saltstack/salt
     apt-get update
     apt-get --yes install git salt-minion
 
