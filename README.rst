@@ -25,28 +25,16 @@ Ubuntu 14.04
     # stop salt-minion for local
     service salt-minion stop
 
-Base env
-
-.. code:: bash
-
+    # Base env
     mkdir -p /srv/salt
 
-Clone
-
-.. code:: bash
-
+    # Clone
     git clone https://github.com/felixhummel/saltstates /srv/felix.salt
 
-Base top file
+    # Base top file
+    cp /srv/felix.salt/base_top_example.sls /srv/salt/top.sls
 
-.. code:: bash
-
-    cp /srv/felix.salt/base_top_example.sls /srv/salt/base/top.sls
-
-Run locally
-
-.. code:: bash
-
+    # Run locally
     salt-call state.highstate
 
 Jiffybox
