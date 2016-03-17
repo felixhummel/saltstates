@@ -4,6 +4,6 @@
     - mode: 644
 
 update-grub:
-  cmd.run:
-    - onchanges:
+  cmd.wait:
+    - watch:
       - file: /etc/default/grub

@@ -19,11 +19,11 @@
     {% endif %}
 
 {{ user }}_configs_init:
-  cmd.run:
+  cmd.wait:
     - name: ./init --force --skip-git
     - cwd: {{ target }}
     - user: {{ user }}
     - group: {{ user }}
-    - onchanges:
+    - watch:
       - git: {{ user }}_configs
 {% endmacro %}
