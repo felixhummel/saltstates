@@ -10,6 +10,3 @@ base:
   'think':
     - grub
     - desktop
-  'x':
-    - grub
-    - desktop
