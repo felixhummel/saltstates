@@ -6,12 +6,15 @@ oracle_vbox_repo:
     - file: /etc/apt/sources.list.d/oracle_vbox.list
     - key_url: http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
 
-dkms:
-  pkg.installed
+vbox_dependencies:
+  pkg.installed:
+    - pkgs:
+      - dkms
+      - linux-headers-{{ grains['kernelrelease'] }}
 
 virtualbox:
   pkg.installed:
     - require:
       - pkgrepo: oracle_vbox_repo
-      - pkg: dkms
+      - pkg: vbox_dependencies
 
