@@ -5,8 +5,11 @@ base:
     - root
     - ssh
   'locutus':
+    - grub
     - desktop
   'think':
+    - grub
     - desktop
   'x':
     - grub
+    - desktop
