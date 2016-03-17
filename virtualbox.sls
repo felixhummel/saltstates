@@ -13,4 +13,5 @@ virtualbox:
   pkg.installed:
     - require:
       - pkgrepo: oracle_vbox_repo
+      - pkg: dkms
 
