@@ -1,42 +1,62 @@
 Felix' Salt States
 ==================
-If you use the ssh state, then my public key will be registered for root on
-your server.
+The following is for a masterless_ setup.
 
-The following is for a masterless setup.
+.. _masterless: https://docs.saltstack.com/en/latest/topics/tutorials/quickstart.html
 
-Ubuntu 14.04
-
-.. code:: bash
+Install Salt on Ubuntu 14.04::
 
     sudo -i
-    add-apt-repository -- yes ppa:saltstack/salt
+    wget -O - https://repo.saltstack.com/apt/ubuntu/14.04/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
+    echo 'deb http://repo.saltstack.com/apt/ubuntu/14.04/amd64/latest trusty main' > /etc/apt/sources.list.d/saltstack.list
     apt-get update
     apt-get --yes install git salt-minion
 
-    cat <<EOF > /etc/salt/minion
-    file_client: local
+    service salt-minion stop
+
+
+Felix' setup::
+
+    cat << 'EOF' > /etc/salt/minion
+    # https://docs.saltstack.com/en/latest/ref/output/all/salt.output.highstate.html
     state_verbose: False
+    state_output: changes
+
+    file_client: local
+    file_roots:
+      base:
+        - /srv/salt
+        - /srv/private.salt
+    EOF
+
+    git clone https://github.com/felixhummel/saltstates /srv/salt
+    cp -r /srv/salt/pillar_example/ /srv/pillar
+
+    salt-call grains.get id
+    salt-call pillar.get users
+
+
+On a server to include some of these states::
+
+    cat << 'EOF' > /etc/salt/minion
+    # https://docs.saltstack.com/en/latest/ref/output/all/salt.output.highstate.html
+    state_verbose: False
+    state_output: changes
+
+    file_client: local
     file_roots:
       base:
         - /srv/salt
         - /srv/felix.salt
     EOF
-    # stop salt-minion for local
-    service salt-minion stop
 
-    # Base env
     mkdir -p /srv/salt
-
-    # Clone
     git clone https://github.com/felixhummel/saltstates /srv/felix.salt
 
-    # Pillar
-    cp -r /srv/salt/pillar_example/ /srv/pillar
+    cp -r /srv/felix.salt/pillar_example/ /srv/pillar
 
-    # Run locally
-    salt-call state.highstate
-
+    salt-call grains.get id
+    salt-call pillar.get users
 
 Jiffybox
 
@@ -64,3 +84,5 @@ Jiffybox
     hostname
     hostname -f
 
+    rm /etc/salt/minion_id
+    salt-call grains.get id
