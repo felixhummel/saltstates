@@ -4,6 +4,7 @@ base:
     - felix
     - root
     - ssh
+    - pyenv
   'locutus':
     - desktop
   'think':
