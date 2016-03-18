@@ -10,6 +10,7 @@ base:
     - felix.xfce
     - felix.owns_salt
     - virtualbox
+    - private
   'think':
     - grub
     - desktop
