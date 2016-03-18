@@ -7,6 +7,7 @@ base:
   'locutus':
     - grub
     - desktop
+    - felix.xfce
     - felix.owns_salt
     - virtualbox
   'think':
