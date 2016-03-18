@@ -31,8 +31,12 @@ Ubuntu 14.04
     # Clone
     git clone https://github.com/felixhummel/saltstates /srv/felix.salt
 
+    # Pillar
+    cp -r /srv/salt/pillar_example/ /srv/pillar
+
     # Run locally
     salt-call state.highstate
+
 
 Jiffybox
 
