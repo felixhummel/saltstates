@@ -7,5 +7,7 @@ base:
     - pyenv
   'locutus':
     - desktop
+    - enterprise
   'think':
     - desktop
+    - enterprise
