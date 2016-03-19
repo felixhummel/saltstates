@@ -9,6 +9,7 @@ apps:
     - pkgs:
       - seahorse  # gnome-keyring manager
       - parcellite  # clipboard manager
+      - geeqie  # image viewer with treeview - for everything else: ristretto
 
 {{ home }}/.themes:
   file.directory:
