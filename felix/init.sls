@@ -19,6 +19,7 @@ felix:
       - plugdev
       - sambashare
       - fuse
+      - disk
 
 # There should be a better way to clean up things here. I guess there is some skeleton, but I'm too lazy to find it now.
 {% set dirs = 'Documents Music Pictures Public Templates Videos'.split() %}
