@@ -4,13 +4,6 @@
 include:
   - felix
 
-apps:
-  pkg.installed:
-    - pkgs:
-      - seahorse  # gnome-keyring manager
-      - parcellite  # clipboard manager
-      - geeqie  # image viewer with treeview - for everything else: ristretto
-
 {{ home }}/.themes:
   file.directory:
     {{ dirowner('felix', recurse=False) }}
