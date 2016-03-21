@@ -13,3 +13,4 @@ apps:
       - parcellite  # clipboard manager
       - geeqie  # image viewer with treeview - for everything else: ristretto
       - calibre  # ebook-reader
+      - cryptsetup
