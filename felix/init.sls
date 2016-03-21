@@ -70,6 +70,7 @@ remove_default_user:
   ssh_known_hosts.present:
     - user: felix
     - fingerprint: {{ fingerprint }}
+    - enc: ssh-rsa
     - require:
       - user: felix
 {% endfor %}
