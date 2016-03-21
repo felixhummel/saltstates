@@ -1,16 +1,16 @@
 include:
-  - grub
   - desktop.chrome
-  - felix.xfce
   - felix.owns_salt
-  - virtualbox
+  - felix.xfce
+  - grub
   - private
+  - virtualbox
 
 apps:
   pkg.installed:
     - pkgs:
-      - seahorse  # gnome-keyring manager
-      - parcellite  # clipboard manager
-      - geeqie  # image viewer with treeview - for everything else: ristretto
       - calibre  # ebook-reader
       - cryptsetup
+      - geeqie  # image viewer with treeview - for everything else: ristretto
+      - parcellite  # clipboard manager
+      - seahorse  # gnome-keyring manager
