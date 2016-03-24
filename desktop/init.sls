@@ -14,3 +14,4 @@ apps:
       - geeqie  # image viewer with treeview - for everything else: ristretto
       - parcellite  # clipboard manager
       - seahorse  # gnome-keyring manager
+      - vlc
