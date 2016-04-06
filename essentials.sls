@@ -20,6 +20,7 @@ tools:
       - python-virtualenv
       - rsync
       - tmux
+      - tofrodos
       - tree
       - vim-nox
       - wajig
