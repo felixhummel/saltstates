@@ -11,3 +11,4 @@ base:
   'think':
     - desktop
     - enterprise
+    - postgres
