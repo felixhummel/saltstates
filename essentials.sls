@@ -12,6 +12,7 @@ tools:
       - jnettop
       - lftp
       - lsof
+      - ncdu
       - nmap
       # TODO: use ntpdate for laptops
       - ntp
