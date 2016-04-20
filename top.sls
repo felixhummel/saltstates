@@ -14,3 +14,6 @@ base:
     - postgres
   'lab':
     - desktop
+    - nvidia
+    - vagrant
+
