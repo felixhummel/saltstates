@@ -31,6 +31,9 @@ Felix' setup::
 
     git clone https://github.com/felixhummel/saltstates /srv/salt
     cp -r /srv/salt/pillar_example/ /srv/pillar
+    # private state is included in desktop, make sure it exists
+    mkdir -p /srv/private.salt
+    touch /srv/private.salt/private.sls
 
     salt-call grains.get id
     salt-call pillar.get users
