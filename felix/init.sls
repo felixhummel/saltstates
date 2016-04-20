@@ -36,7 +36,7 @@ felix:
 
 /home/felix/.gitconfig.d/user:
   file.managed:
-    - source: salt://felix/gitconfig_user
+    - source: salt://felix/files/gitconfig_user
     - user: felix
     - group: felix
     - mode: 600
@@ -49,7 +49,7 @@ felix:
 
 /home/felix/.gitconfig.d/local:
   file.managed:
-    - source: salt://felix/gitconfig_local
+    - source: salt://felix/files/gitconfig_local
     - user: felix
     - group: felix
     - mode: 600
