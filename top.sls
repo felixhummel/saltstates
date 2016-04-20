@@ -12,3 +12,5 @@ base:
     - desktop
     - enterprise
     - postgres
+  'lab':
+    - desktop
