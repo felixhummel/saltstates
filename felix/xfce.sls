@@ -16,3 +16,14 @@ git@github.com:felixhummel/xfce-AlbatrossFelix.git:
       - ssh_known_hosts: github.com
       - file: {{ home }}/.themes
 
+compton:
+  pkg.installed
+
+{{ home }}/.config/compton.conf:
+  file.managed:
+    - source: salt://felix/files/compton.conf
+    - user: felix
+    - group: felix
+    - mode: 600
+    - require:
+      - user: felix
