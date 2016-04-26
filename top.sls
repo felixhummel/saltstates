@@ -16,4 +16,5 @@ base:
     - desktop
     - nvidia
     - vagrant
+    - java
 
