@@ -30,7 +30,7 @@ Felix' setup::
     EOF
 
     git clone https://github.com/felixhummel/saltstates /srv/salt
-    cp -r /srv/salt/pillar_example/ /srv/pillar
+    cp -r /srv/salt/examples/pillar /srv/pillar
     # private state is included in desktop, make sure it exists
     mkdir -p /srv/private.salt
     touch /srv/private.salt/private.sls
@@ -53,10 +53,10 @@ On a server to include some of these states::
         - /srv/felix.salt
     EOF
 
-    mkdir -p /srv/salt
     git clone https://github.com/felixhummel/saltstates /srv/felix.salt
 
-    cp -r /srv/felix.salt/pillar_example/ /srv/pillar
+    cp -r /srv/felix.salt/examples/salt /srv/salt
+    cp -r /srv/felix.salt/examples/pillar /srv/pillar
 
     salt-call grains.get id
     salt-call pillar.get users
