@@ -1,3 +1,6 @@
+include:
+  - users
+
 # http://askubuntu.com/a/21551
 python_build_dependencies:
   pkg.installed:
@@ -21,10 +24,14 @@ pyenv_for_{{ user }}:
     - name: https://github.com/yyuu/pyenv.git
     - target: {{ home }}/.pyenv
     - user: {{ user }}
+    - require:
+      - user: user_{{ user }}
 pyenv_virtualenv_for_{{ user }}:
   git.latest:
     - name: https://github.com/yyuu/pyenv-virtualenv.git
     - target: {{ home }}/.pyenv/plugins/pyenv-virtualenv
     - user: {{ user }}
+    - require:
+      - user: user_{{ user }}
 {% endif %}
 {% endfor %}
