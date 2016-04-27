@@ -65,11 +65,11 @@ remove_default_user:
   file.absent:
     - name: /home/user0
 
-{% for host, fingerprint in salt['pillar.get']('users:felix:known_hosts').items() %}
+{% for host, key in salt['pillar.get']('users:felix:known_hosts').items() %}
 {{ host }}:
   ssh_known_hosts.present:
     - user: felix
-    - fingerprint: {{ fingerprint }}
+    - key: {{ key }}
     - enc: ssh-rsa
     - require:
       - user: felix
