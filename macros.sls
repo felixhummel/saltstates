@@ -8,7 +8,7 @@
 
 {{ user }}_configs:
   git.latest:
-    - name: https://github.com/felixhummel/configs.git
+    - name: {{ salt['pillar.get']('users:{0}:configs_repo'.format(user), 'https://github.com/felixhummel/configs.git') }}
     - rev: master
     - target: {{ target }}
     - user: {{ user }}
