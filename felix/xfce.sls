@@ -2,7 +2,7 @@
 {% from 'felix/macros.sls' import dirowner %}
 
 include:
-  - felix
+  - known_hosts
 
 {{ home }}/.themes:
   file.directory:
