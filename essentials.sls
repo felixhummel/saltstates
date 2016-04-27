@@ -18,6 +18,8 @@ tools:
       - ntp
       - pwgen
       - python-optcomplete
+      # https://docs.saltstack.com/en/latest/ref/states/all/salt.states.pkgrepo.html
+      - python-software-properties
       - python-virtualenv
       - rsync
       - tmux
