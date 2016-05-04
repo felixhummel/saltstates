@@ -15,7 +15,7 @@
     - submodules: True
     {% if require %}
     - require:
-      - user: {{ user }}
+      - user: user_{{ user }}
     {% endif %}
 
 {{ user }}_configs_init:
