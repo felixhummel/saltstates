@@ -1,5 +1,11 @@
 users:
 
+  root:
+    name: I AM ROOT
+    email: obey@example.org
+    configs_repo: https://github.com/felixhummel/configs.git
+    cleanup_home: True
+
   alice:  # this is the unix username
     name: Alice Wonderland
     email: alice@example.org

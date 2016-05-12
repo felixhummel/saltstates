@@ -14,7 +14,10 @@
 
   {% if p.get('configs_repo', False) %}
     {% set repo = p['configs_repo'] %}
+    {% set full_name = p['name'] %}
+    {% set email = p['email'] %}
     {% include "users/configs.sls" %}
+    {% include "users/gitconfig.sls" %}
   {% endif %}
 
   {% if user == salt_owner %}
