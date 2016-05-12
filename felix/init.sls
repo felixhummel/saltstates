@@ -56,17 +56,8 @@ felix:
     - require:
       - cmd: felix_configs_init
 
-# user0 is my convention for first user with auto-generated uid
-remove_default_user:
-  user.absent:
-    - name: user0
-    - require:
-      - user: felix
-  file.absent:
-    - name: /home/user0
-
 {% for host, key in salt['pillar.get']('users:felix:known_hosts').items() %}
-{{ host }}:
+user_known_host_{{ host }}:
   ssh_known_hosts.present:
     - user: felix
     - key: {{ key }}
