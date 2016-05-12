@@ -1,4 +1,3 @@
-{% for user, p in pillar.get('users', {}).items() %}
 user_{{ user }}:
   group.present:
     - name: {{ user }}
@@ -8,8 +7,8 @@ user_{{ user }}:
   user.present:
     - name: {{ user }}
     - fullname: {{ p['name'] }}
-    - home: {{ p.get('home', '') }}
     - uid: {{ p.get('uid', '') }}
+    - password: {{ p.get('password_hash', '') }}
     - shell: {{ p.get('shell', '') }}
     - groups:
       - {{ user }}
@@ -29,4 +28,3 @@ user_{{ user }}:
       - docker
       {%- endif %}
 
-{% endfor %}
