@@ -1,3 +1,5 @@
+{% set salt_owner = pillar.get('salt_owner', None) %}
+
 {% for user, p in pillar.get('users', {}).items() %}
 user_{{ user }}:
   group.present:
@@ -112,6 +114,17 @@ user_known_host_{{ host }}:
 {% endfor %}
 
 {# END configs #}
+{% endif %}
+
+{% if user == salt_owner %}
+{% from 'users/macros.sls' import dirowner %}
+/srv/salt:
+  file.directory:
+    {{ dirowner(user) }}
+
+/srv/pillar:
+  file.directory:
+    {{ dirowner(user) }}
 {% endif %}
 
 {% endfor %}

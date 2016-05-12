@@ -1,7 +1,1 @@
-- examples
-- felix/owns_salt.sls
-  - pillar['users']
-    - salt-owner: True (on a single user - then make sure only a single user is owner; maybe a group)
-    - salt-owner: username (globally)
-  - useful for VMs / salt states dev
 - remaining stuff in felix/
