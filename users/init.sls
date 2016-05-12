@@ -50,6 +50,7 @@ user_{{ user }}:
 {% endif %}
 {% set target = '{0}/configs'.format(homedir) %}
 
+# configs in general
 {{ user }}_configs:
   git.latest:
     - name: {{ repo }}
@@ -59,7 +60,6 @@ user_{{ user }}:
     - submodules: True
     - require:
       - user: user_{{ user }}
-
 {{ user }}_configs_init:
   cmd.wait:
     - name: ./init --force --skip-git
@@ -69,6 +69,7 @@ user_{{ user }}:
     - watch:
       - git: {{ user }}_configs
 
+# git configs
 {{ homedir }}/.gitconfig.d:
   file.directory:
     - user: {{ user }}
@@ -76,7 +77,6 @@ user_{{ user }}:
     - mode: 700
     - require:
       - user: {{user }}
-
 {{ homedir }}/.gitconfig.d/user:
   file.managed:
     - source: salt://users/files/gitconfig_user
@@ -89,6 +89,27 @@ user_{{ user }}:
       email: {{ pillar['users'][user]['email'] }}
     - require:
       - file: {{ homedir }}/.gitconfig.d
+
+# TODO via pillar
+{{ homedir }}/.gitconfig.d/local:
+  file.managed:
+    - source: salt://users/files/gitconfig_local
+    - user: {{ user }}
+    - group: {{ user }}
+    - mode: 600
+    - require:
+      - cmd: {{ user }}_configs_init
+
+# known_hosts
+{% for host, key in p.get('known_hosts', {}).items() %}
+user_known_host_{{ host }}:
+  ssh_known_hosts.present:
+    - user: {{ user }}
+    - key: {{ key }}
+    - enc: ssh-rsa
+    - require:
+      - user: user_{{ user}}
+{% endfor %}
 
 {# END configs #}
 {% endif %}
