@@ -12,6 +12,7 @@ user_{{ user }}:
     - fullname: {{ p['name'] }}
     - home: {{ p.get('home', '') }}
     - uid: {{ p.get('uid', '') }}
+    - password: {{ p.get('password_hash', '') }}
     - shell: {{ p.get('shell', '') }}
     - groups:
       - {{ user }}
