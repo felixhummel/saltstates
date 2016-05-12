@@ -1,11 +1,10 @@
 # Collection of states for a VM
 include:
   - desktop.chrome
-  - felix.owns_salt
-  - felix.xfce
   - desktop.libreoffice
   - grub
   - private
+  - xfce
 
 apps:
   pkg.installed:
