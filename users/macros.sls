@@ -11,3 +11,10 @@
       - group: {{ name }}
 {% endmacro %}
 
+{% macro gethomedir(username) -%}
+{% if username == 'root' -%}
+/root
+{%- else -%}
+/home/{{ username }}
+{%- endif %}
+{%- endmacro %}

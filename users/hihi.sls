@@ -1,10 +1,7 @@
-{% from 'users/macros.sls' import gethomedir %}
-{% set salt_owner = pillar.get('salt_owner', None) %}
+{% extends "foo.sls" %}
 
-{% for user, p in pillar.get('users', {}).items() %}
 
-{% set homedir = gethomedir(user) %}
-
+{% block default_user_stuff %}
 user_{{ user }}:
   group.present:
     - name: {{ user }}
@@ -34,8 +31,10 @@ user_{{ user }}:
       - disk
       - docker
       {%- endif %}
+{% endblock %}
 
-{% if p.get('cleanup_home', False) -%}
+
+{% block cleanup_home %}
 # There should be a better way to clean up things here. I guess there is
 # some skeleton, but I'm too lazy to find it now.
 {% set dirs = 'Documents Music Pictures Public Templates Videos'.split() %}
@@ -45,10 +44,11 @@ user_{{ user }}:
     - require:
       - user: user_{{ user }}
 {% endfor %}
-{%- endif %}
+{% endblock %}
 
-{# BEGIN configs #}
-{% if p.get('configs_repo', False) -%}
+
+{% block configs %}
+{% if p.get('configs_repo', False) %}
 {% set repo = p['configs_repo'] %}
 {% set target = '{0}/configs'.format(homedir) %}
 
@@ -114,9 +114,10 @@ user_{{ user }}:
 {% endfor %}
 
 {% endif %}
-{# END configs #}
+{% endblock %}
 
-{% if user == salt_owner %}
+
+{% block salt_owner %}
 {% from 'users/macros.sls' import dirowner %}
 /srv/salt:
   file.directory:
@@ -125,6 +126,5 @@ user_{{ user }}:
 /srv/pillar:
   file.directory:
     {{ dirowner(user) }}
-{% endif %}
+{% endblock %}
 
-{% endfor %}
