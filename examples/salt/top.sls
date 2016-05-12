@@ -1,7 +1,7 @@
 base:
   '*':
     - essentials
-    - root
+    - users
     - ssh
     - pyenv
 

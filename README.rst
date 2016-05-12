@@ -56,6 +56,7 @@ On a server to include some of these states::
     git clone https://github.com/felixhummel/saltstates /srv/felix.salt
 
     cp -r /srv/felix.salt/examples/salt /srv/salt
+    touch /srv/salt/private.sls
     cp -r /srv/felix.salt/examples/pillar /srv/pillar
 
     salt-call grains.get id
