@@ -1,11 +1,10 @@
 include:
   - desktop.chrome
-  - felix.owns_salt
-  - felix.xfce
   - desktop.libreoffice
   - grub
   - private
   - virtualbox
+  - xfce
 
 apps:
   pkg.installed:
@@ -16,3 +15,4 @@ apps:
       - parcellite  # clipboard manager
       - seahorse  # gnome-keyring manager
       - vlc
+
