@@ -1,7 +1,7 @@
 base:
   '*':
     - essentials
-    - felix
+    - users
     - ssh
     - pyenv
   'locutus':
