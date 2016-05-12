@@ -1,3 +1,4 @@
+{% from 'users/macros.sls' import gethomedir %}
 include:
   - users
 
@@ -17,7 +18,7 @@ python_build_dependencies:
 
 {% for user, p in pillar.get('users', {}).items() %}
 {% if p.get('pyenv') %}
-{% set home = p.get('home', '/home/{0}'.format(user)) %}
+{% set home = gethomedir(user) %}
 pyenv_for_{{ user }}:
   git.latest:
     - name: https://github.com/yyuu/pyenv.git

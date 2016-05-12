@@ -1,6 +1,6 @@
 {% set username = 'g' %}
-{% set home = '/home/{0}'.format(username) %}
-{% set bindir = '{0}/bin'.format(home) %}
+{% set home = salt['file.join']('/home', username') %}
+{% set bindir = salt['file.join'](home, 'bin') %}
 
 {{ username }}:
   user.present:

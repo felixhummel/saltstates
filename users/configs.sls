@@ -1,4 +1,4 @@
-{% set target = '{0}/configs'.format(homedir) %}
+{% set target = salt['file.join'](homedir, 'configs') %}
 
 # configs in general
 {{ user }}_configs:
