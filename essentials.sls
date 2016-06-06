@@ -1,3 +1,6 @@
+include:
+  - ntp
+
 tools:
   pkg.installed:
     - pkgs:
@@ -14,8 +17,6 @@ tools:
       - lsof
       - ncdu
       - nmap
-      # TODO: use ntpdate for laptops
-      - ntp
       - pwgen
       - python-optcomplete
       # https://docs.saltstack.com/en/latest/ref/states/all/salt.states.pkgrepo.html
