@@ -30,3 +30,8 @@ tools:
       - wajig
       - whois
 
+{% if grains['osrelease'] == '14.04' %}
+git_ppa:
+  pkgrepo.managed:
+    - ppa: git-core/ppa
+{% endif %}
