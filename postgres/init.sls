@@ -13,14 +13,15 @@
 
 pg_hba.conf:
   file.managed:
-    - name: /etc/postgresql/9.4/main/pg_hba.conf
+    - name: /etc/postgresql/{{ version }}/main/pg_hba.conf
     - source: salt://postgres/pg_hba.conf
 postgresql.conf:
   file.managed:
-    - name: /etc/postgresql/9.4/main/postgresql.conf
+    - name: /etc/postgresql/{{ version }}/main/postgresql.conf
     - source: salt://postgres/postgresql.conf
     - template: jinja
     - context:
+      version: {{ version }}
       locale: {{ locale }}
 
 postgres_service:
@@ -36,12 +37,13 @@ postgres_service:
   postgres_user.present:
     - name: {{ user }}
     - require:
-      - pkg: {{ pkg }}
+      - service: postgres_service
 
   postgres_database.present:
     - name: {{ user }}
     - owner: {{ user }}
     - require:
+      - service: postgres_service
       - postgres_user: {{ stateid }}
 {% endfor %}
 
