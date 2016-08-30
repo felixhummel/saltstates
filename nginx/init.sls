@@ -1,11 +1,9 @@
+{% from 'nginx/map.jinja' import dist %}
+
 libssl1.0.0:  # heartbleed
   pkg.latest
 
 
-{% set dist = grains['lsb_distrib_codename'] %}
-{% if dist == 'vivid' %}
-  {% set dist = 'utopic' %}
-{% endif %}
 nginx:
   pkgrepo.managed:
     - name: deb http://nginx.org/packages/ubuntu/ {{ dist }} nginx

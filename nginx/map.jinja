@@ -1,0 +1,7 @@
+{% set dist = grains['lsb_distrib_codename'] %}
+
+{# there is no official support for vivid, but the utopic package works #}
+{% if dist == 'vivid' %}
+  {% set dist = 'utopic' %}
+{% endif %}
+
