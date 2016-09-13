@@ -1,4 +1,4 @@
-{% set version = salt.pillar.get('postgres:version', '9.4') %}
+{% set version = salt.pillar.get('postgres:version', '9.5') %}
 {% set pkg = 'postgresql-{}'.format(version) %}
 {% set dev_pkg = 'postgresql-server-dev-{}'.format(version) %}
 {% set encoding = salt.pillar.get('postgres:encoding', 'UTF-8') %}
