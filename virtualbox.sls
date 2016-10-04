@@ -4,7 +4,11 @@ oracle_vbox_repo:
     # contrib section since 4.0 (https://www.virtualbox.org/wiki/Linux_Downloads#Debian-basedLinuxdistributions)
     - comps: contrib
     - file: /etc/apt/sources.list.d/oracle_vbox.list
+    {% if grains['osmajorrelease'] > 14 %}
+    - key_url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+    {% else %}
     - key_url: http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
+    {% endif %}
 
 vbox_dependencies:
   pkg.installed:
