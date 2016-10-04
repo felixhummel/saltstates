@@ -4,11 +4,11 @@ The following is for a masterless_ setup.
 
 .. _masterless: https://docs.saltstack.com/en/latest/topics/tutorials/quickstart.html
 
-Install Salt on Ubuntu 14.04::
+Install Salt on Ubuntu 16.04 (`others <https://repo.saltstack.com/>`__)::
 
     sudo -i
-    wget -O - https://repo.saltstack.com/apt/ubuntu/14.04/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
-    echo 'deb http://repo.saltstack.com/apt/ubuntu/14.04/amd64/latest trusty main' > /etc/apt/sources.list.d/saltstack.list
+    wget -O - https://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
+    echo 'deb http://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest xenial main' > /etc/apt/sources.list.d/saltstack.list
     apt-get update
     apt-get --yes install git salt-minion
 
