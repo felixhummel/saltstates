@@ -12,7 +12,7 @@ vbox_dependencies:
       - dkms
       - linux-headers-{{ grains['kernelrelease'] }}
 
-virtualbox-5.0:
+virtualbox-5.1:
   pkg.installed:
     - require:
       - pkgrepo: oracle_vbox_repo
