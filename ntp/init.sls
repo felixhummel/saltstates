@@ -4,6 +4,8 @@ ntp:
   service.running:
     - watch:
       - file: /etc/ntp.conf
+    - require:
+      - pkg: ntp
 
 /etc/ntp.conf:
   file.managed:
