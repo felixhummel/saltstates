@@ -24,5 +24,14 @@
     {% include "users/salt_owner.sls" %}
   {% endif %}
 
+{% for pubkey in p.get('pubkeys', []) %}
+{{ user }}_pubkey_{{ loop.index }}:
+  ssh_auth.present:
+    - user: {{ user }}
+    - name: {{ pubkey }}
+    - require:
+      - user: {{ user }}
+{% endfor %}
+
 {% endfor %}
 
