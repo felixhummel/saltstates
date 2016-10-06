@@ -14,8 +14,7 @@
   cmd.wait:
     - name: ./init --force --skip-git
     - cwd: {{ target }}
-    - user: {{ user }}
-    - group: {{ user }}
+    - runas: {{ user }}
     - watch:
       - git: {{ user }}_configs
 

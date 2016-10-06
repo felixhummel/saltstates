@@ -40,8 +40,7 @@ gitolite_repo:
 gitolite_install:
   cmd.run:
     - name: gitolite/install -ln {{ bindir }}
-    - user: {{ username }}
-    - group: {{ username }}
+    - runas: {{ username }}
     - cwd: {{ home }}
     - onchanges:
       - git: gitolite_repo
@@ -49,8 +48,7 @@ gitolite_install:
 gitolite_setup:
   cmd.run:
     - name: gitolite setup -pk felix@locutus.pub
-    - user: {{ username }}
-    - group: {{ username }}
+    - runas: {{ username }}
     - cwd: {{ home }}
     - onchanges:
       - cmd: gitolite_install
