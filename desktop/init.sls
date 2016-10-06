@@ -4,7 +4,6 @@ include:
   - grub
   - private
   - virtualbox
-  - xfce
   - xfce.compton
 
 apps:
