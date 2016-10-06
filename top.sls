@@ -7,6 +7,7 @@ base:
   'locutus':
     - desktop
     - enterprise
+    - nginx
   'think':
     - desktop
     - enterprise
