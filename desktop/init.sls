@@ -5,6 +5,7 @@ include:
   - private
   - virtualbox
   - xfce
+  - xfce.compton
 
 apps:
   pkg.installed:
