@@ -23,6 +23,8 @@ Install Salt on Ubuntu 16.04 (`others <https://repo.saltstack.com/>`__)::
 
     # disable salt-minon
     sudo systemctl disable salt-minion.service
+    # enable daemon starting again
+    rm /usr/sbin/policy-rc.d
 
 
 Felix' setup::
