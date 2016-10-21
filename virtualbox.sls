@@ -16,9 +16,28 @@ vbox_dependencies:
       - dkms
       - linux-headers-{{ grains['kernelrelease'] }}
 
-virtualbox-5.1:
+virtualbox:
   pkg.installed:
+    - name: virtualbox-5.1
     - require:
       - pkgrepo: oracle_vbox_repo
       - pkg: vbox_dependencies
+
+{% set url = 'http://download.virtualbox.org/virtualbox/5.1.8/Oracle_VM_VirtualBox_Extension_Pack-5.1.8-111374.vbox-extpack' %}
+{% set hash_url = 'https://www.virtualbox.org/download/hashes/5.1.8/SHA256SUMS' %}
+{% set filename = url.split('/')[-1] %}
+{% set path = '/var/tmp/%s' % filename %}
+extpack_file:
+  file.managed:
+    - name: {{ path }}
+    - source: {{ url }}
+    - source_hash: {{ hash_url }}
+
+extpack_install:
+  cmd.run:
+    - name: vboxmanage extpack install {{ path }}
+    - unless: "vboxmanage list extpacks | grep 'Oracle VM VirtualBox Extension Pack'"
+    - require:
+      - pkg: virtualbox
+      - file: extpack_file
 
