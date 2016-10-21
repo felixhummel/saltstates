@@ -1,3 +1,4 @@
+      {% set extra_groups = p.get('extra_groups', []) %}
 user_{{ user }}:
   group.present:
     - name: {{ user }}
@@ -27,4 +28,7 @@ user_{{ user }}:
       - disk
       - docker
       {%- endif %}
+      {% for g in extra_groups %}
+      - {{ g }}
+      {%- endfor %}
 
