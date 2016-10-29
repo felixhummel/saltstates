@@ -17,4 +17,7 @@ base:
     - nvidia
     - vagrant
     - java
-
+  'f.lan.felixhummel.de':
+    - desktop
+    - enterprise
+    - postgres
