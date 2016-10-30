@@ -1,0 +1,2 @@
+xubuntu-core:
+  pkg.installed
