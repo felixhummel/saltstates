@@ -19,5 +19,6 @@ base:
     - java
   'f.lan.felixhummel.de':
     - desktop
+    - docker
     - enterprise
     - postgres
