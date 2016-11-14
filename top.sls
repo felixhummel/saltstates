@@ -12,6 +12,7 @@ base:
     - desktop
     - enterprise
     - postgres
+    - w520
   'lab':
     - desktop
     - nvidia
