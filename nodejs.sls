@@ -9,3 +9,8 @@ nodejs:
     - key_url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
   pkg.installed: []
 
+# to build extensions when installing from npm
+build_tools_for_node:
+  pkg.installed:
+    - name: build-essential
+
