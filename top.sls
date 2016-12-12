@@ -10,11 +10,13 @@ base:
     - nginx
   'think':
     - desktop
+    - desktop.wlan
     - enterprise
     - postgres
     - w520
   'lab':
     - desktop
+    - desktop.wlan
     - nvidia
     - vagrant
     - java
