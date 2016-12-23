@@ -25,5 +25,5 @@ docker-engine:
 /usr/local/bin/docker-compose:
   file.managed:
     - mode: 755
-    - source: https://github.com/docker/compose/releases/download/1.8.1/docker-compose-{{ grains['kernel'] }}-{{ grains['cpuarch'] }}
-    - source_hash: sha512=7131cd0f9bad2e6f7f2369c6c9ed353127e6b63209edb5d0f4491c065cdffce274267d1eceb6eefc36169d593785a7d1612d1061c110b75eb2ab2482af7ebf08
+    - source: https://github.com/docker/compose/releases/download/1.9.0/docker-compose-{{ grains['kernel'] }}-{{ grains['cpuarch'] }}
+    - source_hash: sha512=4a44b4035f321ee2089ca1265a2f853b6a678ccbb18f0de91f5d9aef80dfbdc23b1598f13e8db0149b36417e561ca8ae748b7c7a9c7bf1ae97549cef7628bb7d
