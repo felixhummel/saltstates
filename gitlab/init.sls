@@ -16,9 +16,9 @@ gitlab-ce:
     - source: salt://gitlab/gitlab.rb
     - mode: 600
 
-#gitlab_reconfigure:
-#  cmd.run:
-#    - name: gitlab-ctl reconfigure
-#    - onchanges:
-#      - file: /etc/gitlab/gitlab.rb
+gitlab_reconfigure:
+  cmd.run:
+    - name: gitlab-ctl reconfigure
+    - onchanges:
+      - file: /etc/gitlab/gitlab.rb
 
