@@ -11,11 +11,11 @@ gitlab-ce:
       - pkg: gitlab_repo_needs_apt_via_https
   pkg.installed: []
 
-#/etc/gitlab/gitlab.rb:
-#  file.managed:
-#    - source: salt://gitlab/gitlab.rb
-#    - mode: 600
-#
+/etc/gitlab/gitlab.rb:
+  file.managed:
+    - source: salt://gitlab/gitlab.rb
+    - mode: 600
+
 #gitlab_reconfigure:
 #  cmd.run:
 #    - name: gitlab-ctl reconfigure
