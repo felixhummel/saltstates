@@ -11,5 +11,7 @@ elastic_beats_repo:
     - name: deb https://artifacts.elastic.co/packages/5.x/apt stable main
     - file: /etc/apt/sources.list.d/elastic_beats.list
     - key_url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    - require:
+      - pkg: elastic_beats_deps
 
 
