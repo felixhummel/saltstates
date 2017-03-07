@@ -3,3 +3,4 @@ minimal-xubuntu-packages:
     - pkgs:
       - xubuntu-core:
       - mousepad
+      - menulibre  # to edit whisker menu
