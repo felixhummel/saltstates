@@ -1,6 +1,3 @@
-include:
-  - ntp
-
 tools:
   pkg.installed:
     - pkgs:
