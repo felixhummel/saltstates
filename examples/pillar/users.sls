@@ -1,3 +1,5 @@
+# generate password hash with salt FOOBAR:
+# python -c "import crypt; print crypt.crypt('password', '$6$FOOBAR$')"
 users:
 
   root:
