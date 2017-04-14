@@ -1,0 +1,13 @@
+[Unit]
+Description=node_exporter on :9100
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/tmp
+ExecStart=/usr/local/bin/node_exporter -web.listen-address {{ host }}:{{ port }}
+StandardOutput=journal
+StandardError=journal
+
+
