@@ -1,5 +1,6 @@
 base:
   '*':
+    - bash
     - essentials
     - users
     - ssh
