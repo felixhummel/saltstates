@@ -21,3 +21,7 @@ docker-ce:
       - pkgrepo: docker_repo
       - pkg: linux-image-extra-{{ grains['kernelrelease'] }}
 
+docker:
+  service.running:
+    - require:
+      - pkg: docker-ce
