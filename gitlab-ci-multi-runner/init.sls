@@ -8,3 +8,7 @@ gitlab-ci-multi-runner:
     - key_url: salt://gitlab-ci-multi-runner/gpgkey
   pkg.latest: []
 
+gitlab-runner:
+  user.present:
+    - require:
+      - pkg: gitlab-ci-multi-runner
