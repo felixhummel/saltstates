@@ -9,6 +9,7 @@ base:
     - desktop
     - enterprise
     - nginx
+    - xfce.locker
   'think':
     - desktop
     - desktop.wlan
