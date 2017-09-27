@@ -21,7 +21,14 @@ docker-ce:
       - pkgrepo: docker_repo
       - pkg: linux-image-extra-{{ grains['kernelrelease'] }}
 
+# use overlay2 (instead of aufs)
+# https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#configure-docker-with-the-overlay-or-overlay2-storage-driver
+/etc/docker/daemon.json:
+  file.managed:
+    - source: salt://docker/files/daemon.json
+    - mode: 600
+
 docker:
   service.running:
-    - require:
-      - pkg: docker-ce
+    - watch:
+      - file: /etc/docker/daemon.json
