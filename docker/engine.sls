@@ -1,3 +1,4 @@
+{% set is_aws = 'aws' in grains['kernelrelease'] %}
 docker_deps:
   pkg.installed:
     - pkgs:
@@ -11,15 +12,20 @@ docker_repo:
     - file: /etc/apt/sources.list.d/docker.list
     - key_url: https://download.docker.com/linux/ubuntu/gpg
 
+{# aws image contains kernel extra modules #}
+{% if not is_aws -%}
 linux-image-extra-{{ grains['kernelrelease'] }}:
   pkg.installed
+{%- endif %}
 
 docker-ce:
   pkg.installed:
     - require:
       - pkg: docker_deps
       - pkgrepo: docker_repo
+{% if not is_aws -%}
       - pkg: linux-image-extra-{{ grains['kernelrelease'] }}
+{%- endif %}
 
 # use overlay2 (instead of aufs)
 # https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#configure-docker-with-the-overlay-or-overlay2-storage-driver
