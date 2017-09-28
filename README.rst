@@ -45,6 +45,7 @@ On a server to include some of these states::
     file_roots:
       base:
         - /srv/salt
+      felix:
         - /srv/felix.salt
     EOF
 
