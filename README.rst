@@ -47,6 +47,8 @@ On a server to include some of these states::
         - /srv/salt
       felix:
         - /srv/felix.salt
+
+    top_file_merging_strategy: same
     EOF
 
     git clone https://github.com/felixhummel/saltstates /srv/felix.salt
