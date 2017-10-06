@@ -13,7 +13,7 @@ docker_repo:
     - key_url: https://download.docker.com/linux/ubuntu/gpg
 
 {# aws image contains kernel extra modules #}
-{% if not is_aws -%}
+{%- if not is_aws %}
 linux-image-extra-{{ grains['kernelrelease'] }}:
   pkg.installed
 {%- endif %}
@@ -23,7 +23,7 @@ docker-ce:
     - require:
       - pkg: docker_deps
       - pkgrepo: docker_repo
-{% if not is_aws -%}
+{%- if not is_aws %}
       - pkg: linux-image-extra-{{ grains['kernelrelease'] }}
 {%- endif %}
 
