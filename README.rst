@@ -10,31 +10,8 @@ Install Salt on Ubuntu 16.04 (`others <https://repo.saltstack.com/>`__)::
 
 See [bin/masterless.sh](bin/masterless.sh).
 
-Felix' setup::
-
-    cat << 'EOF' > /etc/salt/minion
-    # https://docs.saltstack.com/en/latest/ref/output/all/salt.output.highstate.html
-    state_verbose: False
-    state_output: changes
-
-    file_client: local
-    file_roots:
-      base:
-        - /srv/salt
-        - /srv/private.salt
-    EOF
-
-    git clone https://github.com/felixhummel/saltstates /srv/salt
-    cp -r /srv/salt/examples/pillar /srv/pillar
-    # private state is included in desktop, make sure it exists
-    mkdir -p /srv/private.salt
-    touch /srv/private.salt/private.sls
-
-    salt-call grains.get id
-    salt-call pillar.get users
-
-
-On a server to include some of these states::
+Default
+-------
 
     cat << 'EOF' > /etc/salt/minion
     # https://docs.saltstack.com/en/latest/ref/output/all/salt.output.highstate.html
