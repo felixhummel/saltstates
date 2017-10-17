@@ -10,8 +10,10 @@ Install Salt on Ubuntu 16.04 (`others <https://repo.saltstack.com/>`__)::
 
 See [bin/masterless.sh](bin/masterless.sh).
 
+
 Default
 -------
+::
 
     cat << 'EOF' > /etc/salt/minion
     # https://docs.saltstack.com/en/latest/ref/output/all/salt.output.highstate.html
