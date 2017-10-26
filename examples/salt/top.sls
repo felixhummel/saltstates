@@ -1,7 +1,7 @@
 base:
   '*':
-    - essentials
-    - users
-    - ssh
-    - pyenv
+    - felix: essentials
+    - felix: users
+    - felix: ssh
+    - felix: pyenv
 
