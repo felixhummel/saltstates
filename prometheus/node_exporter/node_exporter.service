@@ -6,7 +6,7 @@ After=network-online.target
 [Service]
 Type=simple
 WorkingDirectory=/tmp
-ExecStart=/usr/local/bin/node_exporter -web.listen-address {{ host }}:{{ port }}
+ExecStart=/usr/local/bin/node_exporter --web.listen-address {{ host }}:{{ port }}
 StandardOutput=journal
 StandardError=journal
 
