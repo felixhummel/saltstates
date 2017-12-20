@@ -16,6 +16,9 @@ Concerning docker build caching, see https://gitlab.com/gitlab-org/gitlab-ce/iss
 
 ## Shell runner with docker
 Simplest but least secure runner. Caching just works.
+
+Be aware though: You will have a bad time if you expose ports on the host
+in your `docker-compose.yml` and run concurrently. ;)
 ```
 salt 'build01' state.apply gitlab.runner.shelldocker
 ```

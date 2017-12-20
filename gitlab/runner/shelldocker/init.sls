@@ -3,6 +3,7 @@
 include:
   - gitlab.runner
   - docker.engine
+  - docker.compose
 
 gitlab_runner_in_docker_group:
   user.present:
