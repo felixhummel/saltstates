@@ -2,6 +2,7 @@
 
 include:
   - gitlab.runner
+  - docker.engine
 
 # this configures a dind runner, but the executor is still docker,
 # so any build step with an image can be run
