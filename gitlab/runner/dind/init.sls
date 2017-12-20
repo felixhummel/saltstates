@@ -1,4 +1,4 @@
-{% from "gitlab/runner/docker/map.jinja" import runner_name with context %}
+{% from slspath + "/map.jinja" import runner_name with context %}
 
 include:
   - gitlab.runner
