@@ -22,7 +22,7 @@ base:
     - nvidia
     - vagrant
     - java
-  'f.lan.felixhummel.de':
+  'f':
     - desktop
     - docker
     - enterprise
