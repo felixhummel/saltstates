@@ -1,4 +1,5 @@
-{% set dist = grains['lsb_distrib_codename'] %}
+{% set dist = grains['oscodename'] %}
+
 include:
   - apt_transport_https
 
