@@ -1,0 +1,10 @@
+state_verbose: False
+state_output: changes
+
+file_roots:
+  base:
+    - /srv/salt
+  felix:
+    - /srv/felix.salt
+
+top_file_merging_strategy: same
