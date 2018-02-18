@@ -1,10 +1,5 @@
 # See /usr/share/postfix/main.cf.dist for a commented, more complete version
-
-
-# Debian specific:  Specifying a file name will cause the first
-# line of that file to be used as the name.  The Debian default
-# is /etc/mailname.
-#myorigin = /etc/mailname
+compatibility_level = 2
 
 smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)
 biff = no
