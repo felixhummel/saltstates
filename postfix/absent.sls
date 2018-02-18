@@ -1,0 +1,3 @@
+mailutils:
+  pkg.purged
+
