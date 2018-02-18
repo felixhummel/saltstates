@@ -9,3 +9,18 @@ postfix:
     mynetworks: '127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128'
     inet_interfaces: localhost
     inet_protocols: ipv4
+  dkim:
+    dns_is_set: false
+    # man 5 opendkim.conf
+    domains:
+      - felixhummel.de
+    TrustedHosts:
+      - '127.0.0.1'
+      - 'localhost'
+      - '37.120.190.133/32'
+      - '172.16.0.0/12'
+      - '*.felixhummel.de'
+    SigningTable:
+      - '*@*felixhummel.de mail._domainkey.felixhummel.de'
+    KeyTable:
+      - mail._domainkey.felixhummel.de felixhummel.de:mail:/etc/opendkim/keys/felixhummel.de/mail.private

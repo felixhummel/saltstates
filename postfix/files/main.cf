@@ -40,3 +40,7 @@ recipient_delimiter = +
 {% if generic_map -%}
 smtp_generic_maps = hash:/etc/postfix/generic
 {%- endif %}
+
+{%- for line in milter_lines|default([]) %}
+{{ line }}
+{%- endfor %}

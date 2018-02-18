@@ -1,4 +1,6 @@
 {% set generic_map = salt['pillar.get']('postfix:generic_map', None) -%}
+{% set dkim_dns_is_set = salt['pillar.get']('postfix:dkim:dns_is_set') %}
+{% set domains = salt['pillar.get']('postfix:dkim:domains', []) %}
 
 mailutils:
   pkg.installed
@@ -8,13 +10,19 @@ postfix:
     - watch:
       - file: /etc/postfix/main.cf
 
-postfix_main_cf:
+/etc/postfix/main.cf:
   file.managed:
-    - name: /etc/postfix/main.cf
     - source: salt://postfix/files/main.cf
     - template: jinja
     - context:
       generic_map: {{ generic_map }}
+      {%- if dkim_dns_is_set %}
+      milter_lines:
+        - milter_protocol = 2
+        - milter_default_action = accept
+        - smtpd_milters = unix:/var/run/opendkim/opendkim.sock
+        - non_smtpd_milters = unix:/var/run/opendkim/opendkim.sock
+      {%- endif %}
     - mode: 600
     - require:
       - pkg: mailutils
@@ -40,3 +48,52 @@ update_postfix_lookup_table:
       - service: postfix
 {% endif %}
 
+{% if dkim_dns_is_set %}
+opendkim:
+  pkg.installed:
+    - pkgs:
+      - opendkim
+      - opendkim-tools
+  service.running:
+    - watch:
+      - file: /etc/opendkim
+      - file: /etc/opendkim.conf
+      - file: /etc/opendkim/TrustedHosts
+      - file: /etc/opendkim/KeyTable
+      - file: /etc/opendkim/SigningTable
+
+/etc/opendkim.conf:
+  file.managed:
+    - source: salt://postfix/files/opendkim.conf
+
+/etc/opendkim:
+  file.directory:
+    - dir_mode: 700
+    - user: opendkim
+    - group: opendkim
+    - dir_mode: 700
+    - file_mode: 600
+    - recurse:
+      - user
+      - group
+      - mode
+
+/etc/opendkim/TrustedHosts:
+  file.managed:
+    - contents_pillar: postfix:dkim:TrustedHosts
+    - user: opendkim
+    - group: opendkim
+    - mode: 600
+/etc/opendkim/KeyTable:
+  file.managed:
+    - contents_pillar: postfix:dkim:KeyTable
+    - user: opendkim
+    - group: opendkim
+    - mode: 600
+/etc/opendkim/SigningTable:
+  file.managed:
+    - contents_pillar: postfix:dkim:SigningTable
+    - user: opendkim
+    - group: opendkim
+    - mode: 600
+{% endif %}
