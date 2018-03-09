@@ -37,7 +37,7 @@ sudo -iu monit bash -c "echo 'test' | mail -s 'test monit' test@felixhummel.de"
 # SPF
 Simply add your IP to your DNS SPF record, e.g.
 ```
-v=spf1 mx a include:example.org ip4:1.2.3.4/32 ~all
+@   IN  TXT "v=spf1 mx a include:example.org ip4:1.2.3.4/32 ~all"
 ```
 This uses version 1 allowing
 
@@ -50,6 +50,11 @@ and then SOFTFAILs for anything else.
 When you are happy with the results, change `~all` to `-all`, so it FAILs.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Sender_Policy_Framework) has more on this.
+
+Verify:
+```
+dig TXT +short felixhummel.de
+```
 
 Test:
 ```

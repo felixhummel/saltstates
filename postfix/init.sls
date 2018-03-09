@@ -1,14 +1,22 @@
+{% set domain = salt['pillar.get']('postfix:domain') %}
 {% set generic_map = salt['pillar.get']('postfix:generic_map', None) -%}
 {% set dkim_dns_is_set = salt['pillar.get']('postfix:dkim:dns_is_set') %}
-{% set domains = salt['pillar.get']('postfix:dkim:domains', []) %}
 
 mailutils:
   pkg.installed
 
 postfix:
+  pkg.installed: []
   service.running:
     - watch:
+      - file: /etc/mailname
       - file: /etc/postfix/main.cf
+
+/etc/mailname:
+  file.managed:
+    - mode: 644
+    - contents:
+      - {{ domain }}
 
 /etc/postfix/main.cf:
   file.managed:
@@ -25,7 +33,7 @@ postfix:
       {%- endif %}
     - mode: 600
     - require:
-      - pkg: mailutils
+      - pkg: postfix
 
 {% if generic_map %}
 # allows aliasing from unix user -> FROM mail addr
@@ -56,11 +64,16 @@ opendkim:
       - opendkim-tools
   service.running:
     - watch:
+      - file: /etc/default/opendkim
       - file: /etc/opendkim
       - file: /etc/opendkim.conf
       - file: /etc/opendkim/TrustedHosts
       - file: /etc/opendkim/KeyTable
       - file: /etc/opendkim/SigningTable
+
+/etc/default/opendkim:
+  file.managed:
+    - source: salt://postfix/files/etc_default/opendkim
 
 /etc/opendkim.conf:
   file.managed:

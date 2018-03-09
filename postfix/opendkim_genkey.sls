@@ -1,12 +1,9 @@
-{% set domains = salt['pillar.get']('postfix:dkim:domains', []) %}
+{% set domain = salt['pillar.get']('postfix:domain', []) %}
 {% set selector = 'mail' %}
 
 
-{% if domains %}
 opendkim-tools:
   pkg.installed
-
-{% for domain in domains -%}
 
 {% set keydir = '/etc/opendkim/keys/' + domain %}
 {{ keydir }}:
@@ -21,12 +18,9 @@ opendkim-genkey -s {{ selector }} -d {{ domain }}:
     - cwd: {{ keydir }}
     - unless: test -f {{ privkey_path }}
 
-dkim:pubkeys:{{ domain }}:
+dkim:pubkey:
   grains.present:
     - force: true
     - value: {{ pubkey_path }}
     - require:
       - cmd: opendkim-genkey -s {{ selector }} -d {{ domain }}
-{%- endfor %}
-
-{%- endif %}
