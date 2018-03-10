@@ -12,6 +12,7 @@ tools:
       - lftp
       - lsof
       - ncdu
+      - net-tools  # netstat
       - nmap
       - pwgen
       - python-optcomplete
