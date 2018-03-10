@@ -28,6 +28,7 @@ postfix:
       milter_lines:
         - milter_protocol = 2
         - milter_default_action = accept
+        # this is relative to postfix' chroot
         - smtpd_milters = unix:/var/run/opendkim/opendkim.sock
         - non_smtpd_milters = unix:/var/run/opendkim/opendkim.sock
       {%- endif %}
