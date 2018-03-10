@@ -1,4 +1,8 @@
+{% set domain = 'felixhummel.de' %}
+{% set mysubnet = '10.2.0.0/16' %}
+
 postfix:
+  domain: {{ domain }}
   generic_map:
     monit: monit@felixhummel.de
     monit@s3: monit@felixhummel.de
@@ -9,7 +13,7 @@ postfix:
     # - debian returns the short name (not the FQDN) as configured in /etc/hostname
     # - postfix appends .localdomain to short hostnames
     myhostname = {{ grains['fqdn'] }}
-    mynetworks = 10.123/16 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+    mynetworks = {{ mysubnet }} 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
 
     inet_interfaces = all
     inet_protocols = ipv4
@@ -19,7 +23,7 @@ postfix:
     TrustedHosts: |
       127.0.0.1
       localhost
-      10.2/16
+      {{ mysubnet }}
       *.{{ domain }}
     SigningTable:
       - '*@*felixhummel.de mail._domainkey.felixhummel.de'
