@@ -1,0 +1,11 @@
+# ~/.profile: executed by Bourne-compatible login shells.
+
+if [ "$BASH" ]; then
+  if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+  fi
+fi
+
+# get rid of "ttyname failed: Inappropriate ioctl for device"
+# https://superuser.com/a/1277604/182585
+test -t 0 && mesg n
