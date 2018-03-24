@@ -6,6 +6,7 @@ mailutils:
   pkg.installed
 
 postfix:
+  pkg.installed: []
   service.running:
     - watch:
       - file: /etc/postfix/main.cf
@@ -25,7 +26,7 @@ postfix:
       {%- endif %}
     - mode: 600
     - require:
-      - pkg: mailutils
+      - pkg: postfix
 
 {% if generic_map %}
 # allows aliasing from unix user -> FROM mail addr
