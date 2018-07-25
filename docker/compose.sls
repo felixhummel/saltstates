@@ -7,4 +7,6 @@
     - source: https://github.com/docker/compose/releases/download/{{ version }}/docker-compose-{{ grains['kernel'] }}-{{ grains['cpuarch'] }}
     - skip_verify: True
     - unless: docker-compose --version | grep {{ version }}
+    # TODO remove workaround for https://github.com/saltstack/salt/issues/47042
+    - show_changes: False
 
