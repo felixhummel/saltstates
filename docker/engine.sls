@@ -1,4 +1,9 @@
 {% set is_aws = 'aws' in grains['kernelrelease'] %}
+{%- if grains['lsb_distrib_codename'] == 'bionic' %}
+  {% set linux_extra = 'linux-modules-extra-' + grains['kernelrelease'] %}
+{%- else %}
+  {% set linux_extra = 'linux-image-extra-' + grains['kernelrelease'] %}
+{%- endif %}
 docker_deps:
   pkg.installed:
     - pkgs:
@@ -14,7 +19,7 @@ docker_repo:
 
 {# aws image contains kernel extra modules #}
 {%- if not is_aws %}
-linux-image-extra-{{ grains['kernelrelease'] }}:
+{{ linux_extra }}:
   pkg.installed
 {%- endif %}
 
@@ -24,7 +29,7 @@ docker-ce:
       - pkg: docker_deps
       - pkgrepo: docker_repo
 {%- if not is_aws %}
-      - pkg: linux-image-extra-{{ grains['kernelrelease'] }}
+    - pkg: {{ linux_extra }}
 {%- endif %}
 
 # use overlay2 (instead of aufs)
