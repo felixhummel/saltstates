@@ -1,4 +1,3 @@
 include:
-  - .py
   - .engine
   - .compose
