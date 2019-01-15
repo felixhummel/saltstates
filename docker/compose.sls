@@ -1,4 +1,4 @@
-{% set version = '1.22.0' %}
+{% set version = '1.23.2' %}
 
 # https://docs.docker.com/compose/install/
 # https://github.com/docker/compose/releases
