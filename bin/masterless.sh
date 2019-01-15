@@ -12,9 +12,7 @@ exit 101
 EOF
 chmod +x /usr/sbin/policy-rc.d
 
-wget -O - https://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
-echo 'deb http://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest xenial main' > /etc/apt/sources.list.d/saltstack.list
-apt-get update && apt-get --yes install git salt-minion
+curl -L https://bootstrap.saltstack.com | sh
 
 # disable salt-minon
 systemctl disable salt-minion.service
