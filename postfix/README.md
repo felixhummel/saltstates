@@ -14,30 +14,33 @@ See `pillar.example` as a reference.
 cp pillar.example /srv/pillar/postfix.sls
 vi /srv/pillar/postfix.sls
 vi /srv/pillar/top.sls
-salt-call state.apply postfix
+salt $minion state.apply postfix saltenv=felix
 ```
 
 Test
 ```
-echo 'test' | mail -s 'test' test@felixhummel.de
+salt $minion cmd.run "mail -s 'test plain' test@felixhummel.de" stdin=test
 ```
 
-Make sure to check your spam!
+You'll probably get a `status=deferred` in `/var/log/syslog`. If not, make
+sure to check your spam!
 
 
 ## Mapping Unix-Users to custom addresses
 See `man 5 generic` and the `generic_map` key in `pillar.example`.
 
+TODO: fix permissions of `/etc/postfix/main.cf`
+
 Test
 ```
-sudo -iu monit bash -c "echo 'test' | mail -s 'test monit' test@felixhummel.de"
+salt $minion cmd.run "mail -s 'test as monit' test@felixhummel.de" stdin=test runas=monit
 ```
 
 
 # SPF
 Simply add your IP to your DNS SPF record, e.g.
 ```
-v=spf1 mx a include:example.org ip4:1.2.3.4/32 ~all
+@   IN  TXT "v=spf1 mx a include:example.org ip4:1.2.3.4/32 ~all"
 ```
 This uses version 1 allowing
 
@@ -51,9 +54,14 @@ When you are happy with the results, change `~all` to `-all`, so it FAILs.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Sender_Policy_Framework) has more on this.
 
+Verify:
+```
+dig TXT +short felixhummel.de
+```
+
 Test:
 ```
-echo 'test' | mail -s 'test SPF' test@felixhummel.de
+salt $minion cmd.run "mail -s 'test SPF' test@felixhummel.de" stdin=test
 ```
 
 You should see `spf=pass` in `Authentication-Results`.
@@ -73,23 +81,23 @@ and http://opendkim.org/opendkim-README for more.
 
 Generate the key-pair:
 ```
-salt-call state.apply postfix.opendkim_genkey
+salt $minion state.apply postfix.opendkim_genkey saltenv=felix
+```
+
+To get the path to the public key:
+```
+salt $minion grains.get dkim:pubkey
 ```
 
 Get the public key and set it on your DNS server:
 ```
-salt-call file.read /etc/opendkim/keys/felixhummel.de/mail.txt
-```
-
-You can get the paths to all public keys:
-```
-salt-call grains.get dkim:pubkeys
+salt $minion file.read /etc/opendkim/keys/rohmetall.eu/mail.txt
 ```
 
 Test:
 ```
-$ dig mail._domainkey.felixhummel.de TXT +short
-"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC7e1PrmRKNurpX2kr9G4zYlggo58IFDUHWTs+GAYyRhL6SyyKwsLxVFY6Cu7kJS7iBW/obAI6uCmWTJF9G+cgeXZHo8Z3BmtGV2P94KFZmh2yruH1mtypLwQR8v5a5iCS8u+VrBNPcW8aPxAAk5BN29usL5wxVDxhn/M6N8cEigwIDAQAB"
+dig TXT +short mail._domainkey.felixhummel.de
+# "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC7e1PrmRKNurpX2kr9G4zYlggo58IFDUHWTs+GAYyRhL6SyyKwsLxVFY6Cu7kJS7iBW/obAI6uCmWTJF9G+cgeXZHo8Z3BmtGV2P94KFZmh2yruH1mtypLwQR8v5a5iCS8u+VrBNPcW8aPxAAk5BN29usL5wxVDxhn/M6N8cEigwIDAQAB"
 ```
 
 ## Step 2: activate the OpenDKIM milter
@@ -103,7 +111,7 @@ salt-call state.apply postfix
 
 Test:
 ```
-echo 'test' | mail -s 'test DKIM' test@felixhummel.de
+salt $minion cmd.run "mail -s 'test DKIM' test@felixhummel.de" stdin=test
 ```
 
 Syslog should show something like this:
