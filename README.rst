@@ -15,6 +15,7 @@ Default
 -------
 ::
 
+    sudo -i
     cat << 'EOF' > /etc/salt/minion
     # https://docs.saltstack.com/en/latest/ref/output/all/salt.output.highstate.html
     state_verbose: False
