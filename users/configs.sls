@@ -17,7 +17,7 @@ git_for_{{ user }}_configs:
       - pkg: git_for_{{ user }}_configs
 {{ user }}_configs_init:
   cmd.wait:
-    - name: ./init --force --skip-git
+    - name: ./init --force
     - cwd: {{ target }}
     - runas: {{ user }}
     - watch:
