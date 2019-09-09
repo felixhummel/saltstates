@@ -1,6 +1,6 @@
+{% set domain = salt['pillar.get']('postfix:domain') %}
 {% set generic_map = salt['pillar.get']('postfix:generic_map', None) -%}
 {% set dkim_dns_is_set = salt['pillar.get']('postfix:dkim:dns_is_set') %}
-{% set domains = salt['pillar.get']('postfix:dkim:domains', []) %}
 
 mailutils:
   pkg.installed
@@ -9,7 +9,14 @@ postfix:
   pkg.installed: []
   service.running:
     - watch:
+      - file: /etc/mailname
       - file: /etc/postfix/main.cf
+
+/etc/mailname:
+  file.managed:
+    - mode: 644
+    - contents:
+      - {{ domain }}
 
 /etc/postfix/main.cf:
   file.managed:
@@ -21,6 +28,7 @@ postfix:
       milter_lines:
         - milter_protocol = 2
         - milter_default_action = accept
+        # this is relative to postfix' chroot
         - smtpd_milters = unix:/var/run/opendkim/opendkim.sock
         - non_smtpd_milters = unix:/var/run/opendkim/opendkim.sock
       {%- endif %}
@@ -57,11 +65,16 @@ opendkim:
       - opendkim-tools
   service.running:
     - watch:
+      - file: /etc/default/opendkim
       - file: /etc/opendkim
       - file: /etc/opendkim.conf
       - file: /etc/opendkim/TrustedHosts
       - file: /etc/opendkim/KeyTable
       - file: /etc/opendkim/SigningTable
+
+/etc/default/opendkim:
+  file.managed:
+    - source: salt://postfix/files/etc_default/opendkim
 
 /etc/opendkim.conf:
   file.managed:
