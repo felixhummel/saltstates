@@ -3,6 +3,7 @@ include:
   - desktop.libreoffice
   - grub
   - private
+  - pycharm
   - virtualbox
   - xfce.desktop
   - xfce.compton
