@@ -4,3 +4,5 @@ minimal-xubuntu-packages:
       - xubuntu-core:
       - mousepad
       - menulibre  # to edit whisker menu
+      - xfce4-netload-plugin  # panel: net
+      - xfce4-systemload-plugin  # panel: cpu, mem, swap
