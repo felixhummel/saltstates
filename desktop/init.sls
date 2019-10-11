@@ -6,7 +6,6 @@ include:
   - pycharm
   - virtualbox
   - xfce.desktop
-  - xfce.compton
 
 apps:
   pkg.installed:
