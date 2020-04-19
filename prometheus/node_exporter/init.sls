@@ -7,13 +7,13 @@ node_exporter_tarball_extracted:
     - name: /tmp
     - archive_format: tar
     - source_hash: sha256=b2503fd932f85f4e5baf161268854bf5d22001869b84f00fd2d1f57b51b72424
+    - onchanges:
+      - file: /usr/local/bin/node_exporter
 
 /usr/local/bin/node_exporter:
   file.managed:
     - mode: 755
     - source: /tmp/node_exporter-{{ version }}.linux-amd64/node_exporter
-    - require:
-      - archive: node_exporter_tarball_extracted
 
 /etc/systemd/system/node_exporter.service:
   file.managed:
