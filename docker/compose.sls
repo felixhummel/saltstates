@@ -1,4 +1,4 @@
-{% set version = '1.24.0' %}
+{% set version = '1.25.5' %}
 # https://docs.docker.com/compose/install/
 # https://github.com/docker/compose/releases
 /usr/local/bin/docker-compose:
