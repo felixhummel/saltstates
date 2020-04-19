@@ -23,7 +23,7 @@ def get_backup_dir(dbname):
     return '/var/backups/{0}'.format(dbname)
 
 
-def dump(dbname, name='', repo=None, runas='postgres', umask=007):
+def dump(dbname, name='', repo=None, runas='postgres', umask='007'):
     """
     :param dbname: Name of the database.
     :param name: Optional human-readable, but *unix-path-safe*, name for the
