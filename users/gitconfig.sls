@@ -1,11 +1,4 @@
 # git configs
-{{ homedir }}/.gitconfig.d:
-  file.directory:
-    - user: {{ user }}
-    - group: {{ user }}
-    - mode: 700
-    - require:
-      - user: {{user }}
 {{ homedir }}/.gitconfig.d/user:
   file.managed:
     - source: salt://users/files/gitconfig_user
@@ -17,7 +10,7 @@
       full_name: {{ full_name }}
       email: {{ email }}
     - require:
-      - file: {{ homedir }}/.gitconfig.d
+      - cmd: {{ user }}_configs_init
 
 # TODO via pillar
 {{ homedir }}/.gitconfig.d/local:
@@ -27,6 +20,7 @@
     - group: {{ user }}
     - mode: 600
     - require:
+      - user: {{user }}
       - cmd: {{ user }}_configs_init
 
 
