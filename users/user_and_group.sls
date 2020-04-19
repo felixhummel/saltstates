@@ -10,7 +10,7 @@ user_{{ user }}:
     - fullname: {{ p['name'] }}
     - uid: {{ p.get('uid', '') }}
     - password: {{ p.get('password_hash', '') }}
-    - shell: {{ p.get('shell', '') }}
+    - shell: {{ p.get('shell', '/bin/bash') }}
     - groups:
       - {{ user }}
       {% if p.get('admin', False) -%}
