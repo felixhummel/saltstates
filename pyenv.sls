@@ -2,19 +2,28 @@
 include:
   - users
 
-# http://askubuntu.com/a/21551
 python_build_dependencies:
   pkg.installed:
     - pkgs:
+      # https://github.com/pyenv/pyenv/wiki/common-build-problems
       - build-essential
-      - libncursesw5-dev
-      - libreadline-gplv2-dev
-      - libssl-dev
-      - libgdbm-dev
-      - libc6-dev
-      - libsqlite3-dev
-      - tk-dev
+      - curl
+      - git
       - libbz2-dev
+      - libffi-dev
+      - liblzma-dev
+      - libncurses5-dev
+      - libncursesw5-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - libssl-dev
+      - llvm
+      - make
+      - python-openssl
+      - tk-dev
+      - wget
+      - xz-utils
+      - zlib1g-dev
 
 {% for user, p in pillar.get('users', {}).items() %}
 {% if p.get('pyenv') %}
