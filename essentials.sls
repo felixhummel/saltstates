@@ -11,7 +11,6 @@ tools:
       - jnettop
       - lftp
       - lsof
-      - mutt
       - ncdu
       - net-tools  # netstat
       - nmap
