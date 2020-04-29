@@ -5,7 +5,7 @@ Unattended-Upgrade::Allowed-Origins {
 };
 
 Unattended-Upgrade::Origins-Pattern {
-{%- for pattern in pillar['unattended_upgrades']['origins_pattern'] %}
+{%- for pattern in pillar['unattended_upgrades'].get('origins_pattern', []) %}
   "{{ pattern }}";
 {%- endfor %}
 };
