@@ -18,7 +18,7 @@ include:
       - RUNNER_NAME: {{ runner_name }}
       - DOCKER_IMAGE: docker:latest
       - DOCKER_PRIVILEGED: true
-      - RUNNER_TAG_LIST: {{ grains['id'] }},arm,docker
+      - RUNNER_TAG_LIST: {{ grains['id'] }},docker
       - REGISTER_RUN_UNTAGGED: true
     - require:
       - pkg: gitlab-runner
