@@ -24,7 +24,14 @@ gitlab_runner_in_docker_group:
       - RUNNER_EXECUTOR: shell
       - RUNNER_NAME: {{ runner_name }}
       - RUNNER_TAG_LIST: {{ grains['id'] }},shelldocker
-      - REGISTER_RUN_UNTAGGED: {{ pillar.get ('gitlab-runner:REGISTER_RUN_UNTAGGED', 'true') }}
+      - REGISTER_RUN_UNTAGGED: {{ pillar.get('gitlab-runner:REGISTER_RUN_UNTAGGED', 'true') }}
+      - REGISTER_LOCKED: "false"
     - require:
       - pkg: gitlab-runner
       - user: gitlab_runner_in_docker_group
+
+# https://docs.gitlab.com/runner/shells/index.html#shell-profile-loading
+/home/gitlab-runner/.bash_logout:
+  file.absent:
+    - require:
+      - user: gitlab-runner
