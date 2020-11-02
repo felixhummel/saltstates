@@ -16,9 +16,9 @@ include:
       - REGISTRATION_TOKEN: {{ pillar['gitlab-runner']['REGISTRATION_TOKEN'] }}
       - RUNNER_EXECUTOR: docker
       - RUNNER_NAME: {{ runner_name }}
-      - DOCKER_IMAGE: docker:latest
-      - DOCKER_PRIVILEGED: true
-      - RUNNER_TAG_LIST: {{ grains['id'] }},docker
-      - REGISTER_RUN_UNTAGGED: true
+      - DOCKER_IMAGE: docker:19.03.12
+      - DOCKER_PRIVILEGED: "true"
+      - RUNNER_TAG_LIST: {{ grains['id'] }},dind
+      - DOCKER_VOLUMES: "/certs/client"
     - require:
       - pkg: gitlab-runner
