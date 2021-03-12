@@ -1,4 +1,10 @@
 # git configs
+{{ homedir }}/.gitconfig.d:
+  file.directory:
+    - user: {{ user }}
+    - group: {{ user }}
+    - mode: 770
+
 {{ homedir }}/.gitconfig.d/user:
   file.managed:
     - source: salt://users/files/gitconfig_user
