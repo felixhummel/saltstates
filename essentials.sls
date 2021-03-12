@@ -15,7 +15,9 @@ tools:
       - net-tools  # netstat
       - nmap
       - pwgen
+{%- if grains['osrelease'] != '20.04' %}
       - python-optcomplete
+{%- endif %}
       - rsync
       - tmux
       - tofrodos
