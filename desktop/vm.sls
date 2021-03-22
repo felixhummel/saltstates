@@ -3,7 +3,6 @@ include:
   - desktop.chrome
   - desktop.libreoffice
   - grub
-  - private
   - xfce
 
 apps:

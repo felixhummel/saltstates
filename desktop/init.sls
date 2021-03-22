@@ -2,8 +2,6 @@ include:
   - desktop.chrome
   - desktop.libreoffice
   - grub
-  - private
-  - pycharm
   - virtualbox
   - xfce.desktop
 
