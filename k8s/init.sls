@@ -1,6 +1,8 @@
 include:
   - apt_transport_https
 
+# It's xenial (even for debian)
+# https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 k8s:
   pkgrepo.managed:
     - name: deb https://apt.kubernetes.io/ kubernetes-xenial main
@@ -8,9 +10,3 @@ k8s:
     - key_url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
     - require:
       - pkg: apt_transport_https
-  pkg.installed:
-    - pkgs:
-      - kubelet
-      - kubeadm
-      - kubectl
-    - hold: True

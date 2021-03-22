@@ -27,3 +27,4 @@ base:
     - docker
     - enterprise
     - postgres
+    - k8s.kubectl
