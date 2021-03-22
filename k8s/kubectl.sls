@@ -1,4 +1,7 @@
+include:
+  - k8s.repo
+
 kubectl:
   pkg.installed:
-    - pkgs:
-      - kubectl
+    - require:
+      - pkgrepo: k8s
