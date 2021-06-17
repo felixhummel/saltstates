@@ -1,19 +1,20 @@
 # https://github.com/prometheus/node_exporter/releases
-{% set version='0.18.1' %}
+{% set version='1.1.2' %}
+{% set sha256='8c1f6a317457a658e0ae68ad710f6b4098db2cad10204649b51e3c043aa3e70d' %}
 
 node_exporter_tarball_extracted:
   archive.extracted:
     - source: https://github.com/prometheus/node_exporter/releases/download/v{{ version }}/node_exporter-{{ version }}.linux-amd64.tar.gz
     - name: /tmp
     - archive_format: tar
-    - source_hash: sha256=b2503fd932f85f4e5baf161268854bf5d22001869b84f00fd2d1f57b51b72424
-    - onchanges:
-      - file: /usr/local/bin/node_exporter
+    - source_hash: sha256={{ sha256 }}
 
 /usr/local/bin/node_exporter:
   file.managed:
     - mode: 755
     - source: /tmp/node_exporter-{{ version }}.linux-amd64/node_exporter
+    - onchanges:
+      - archive: node_exporter_tarball_extracted
 
 /etc/systemd/system/node_exporter.service:
   file.managed:
