@@ -15,9 +15,10 @@ See [bin/masterless.sh](bin/masterless.sh) for details.
 ```
 sudo -i
 
-cd /srv/salt
+git init /srv/salt
+git init /srv/pillar
 
-git init .
+cd /srv/salt
 git submodule add https://github.com/felixhummel/saltstates felix/
 
 cp -r felix/examples/salt /srv/salt
