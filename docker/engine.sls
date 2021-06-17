@@ -9,7 +9,7 @@
 {%- else %}
   {% set linux_extra = 'linux-image-extra-' + grains['kernelrelease'] %}
 {%- endif %}
-{% set need_linux_image_extra = (distro == 'ubuntu' and not is_aws) %}
+{% set need_linux_image_extra = (not is_aws and distro == 'ubuntu' and grains['osmajorrelease'] < 20) %}
 
 docker_deps:
   pkg.installed:
